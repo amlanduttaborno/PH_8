@@ -1,0 +1,20 @@
+{
+  "name": "productive-apps-market",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Productive Apps Marketplace - demo implementation of the challenge",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.18.0",
+    "recharts": "2.5.0"
+  },
+  "devDependencies": {
+    "vite": "5.2.0"
+  }
+}
