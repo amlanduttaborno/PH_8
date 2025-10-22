@@ -1,3 +1,4 @@
+import React from 'react'
 import {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import appsData from '../data/apps.json'
@@ -6,7 +7,7 @@ import { useToast } from '../components/ToastProvider'
 
 export default function AppDetails(){
   const {id} = useParams()
-  const aid = Number(id)
+  const aid = id
   const [app, setApp] = useState(null)
   const [installed, setInstalled] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -16,11 +17,19 @@ export default function AppDetails(){
   useEffect(()=>{
     setLoading(true)
     const t = setTimeout(()=>{
-      const found = appsData.find(a=> a.id === aid)
-      setApp(found || null)
-      setLoading(false)
-      const installedList = JSON.parse(localStorage.getItem('installed')||'[]')
-      setInstalled(installedList.includes(aid))
+      try{
+        // match id either as number or string to be forgiving
+        const found = appsData.find(a=> String(a.id) === String(aid))
+        setApp(found || null)
+        const installedList = JSON.parse(localStorage.getItem('installed')||'[]')
+        setInstalled(found ? installedList.includes(found.id) : false)
+      }catch(err){
+        console.error('Error loading app details', err)
+        setApp(null)
+        setInstalled(false)
+      } finally{
+        setLoading(false)
+      }
     }, 300)
     return ()=> clearTimeout(t)
   },[aid])

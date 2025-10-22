@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import appsData from '../data/apps.json'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 function StateCard({title, value, sub}){
   return (
@@ -74,13 +74,13 @@ export default function Home(){
         <h2>Trending Apps</h2>
         <div className="apps-grid">
           {topApps.map(a=> (
-            <div key={a.id} className="app-card" onClick={()=> navigate(`/apps/${a.id}`)}>
+            <Link key={a.id} to={`/apps/${a.id}`} className="app-card">
               <div className="thumb"><img src={a.image} alt={a.title} /></div>
               <div className="meta">
                 <h4>{a.title}</h4>
                 <div className="small">{a.downloads.toLocaleString()} downloads • {a.ratingAvg}★</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="center"><button className="btn" onClick={()=> navigate('/apps')}>Show All</button></div>

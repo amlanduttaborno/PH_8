@@ -16,8 +16,24 @@ Technologies
 - Recharts
 
 How to run
-1. npm install
-2. npm run dev
+1. Install dependencies
+
+```powershell
+npm install
+```
+
+2. Start the dev server
+
+```powershell
+npm run dev
+```
+
+Open the URL printed by Vite (for example http://localhost:5174/) in your browser.
+
+Quick git tips
+- To view commit count: `git rev-list --count HEAD`
+- To view recent commits: `git log --oneline -n 20`
+
 
 Deployment
 - This project can be deployed to Netlify, Vercel or Cloudflare Pages.

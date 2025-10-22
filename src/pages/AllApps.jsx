@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react'
 import appsData from '../data/apps.json'
 import Spinner from '../components/Spinner'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 
 export default function AllApps(){
   const navigate = useNavigate()
@@ -58,7 +58,7 @@ export default function AllApps(){
         <div className="apps-grid all">
           {filtered.length===0 && !loading && <div className="notfound">No App Found</div>}
           {filtered.map(a=> (
-            <div key={a.id} className="app-card small" onClick={()=> navigate(`/apps/${a.id}`)}>
+            <Link key={a.id} to={`/apps/${a.id}`} className="app-card small">
               <div style={{display:'flex',gap:12}}>
                 <div style={{width:120}} className="thumb"><img src={a.image} alt={a.title} /></div>
                 <div className="meta">
@@ -66,7 +66,7 @@ export default function AllApps(){
                   <div className="small">{a.downloads.toLocaleString()} downloads • {a.ratingAvg}★</div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
